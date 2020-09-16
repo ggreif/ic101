@@ -6,6 +6,19 @@ let Package =
 
 let additions = [] : List Package
 
-let overrides = [] : List Package
+let base = [
+   { name = "matchers"
+   , repo = "git@github.com:kritzcreek/motoko-matchers.git"
+   , version = "v0.1.3"
+   , dependencies = ["base"] : List Text
+   },
+   { name = "base"
+   , repo = "file:///Users/ggreif/motoko-base"
+   , version = "2219026e94142359161f64fd80d38ef71a84ef06"
+   , dependencies = [] : List Text
+   }
+]
+
+let overrides = base : List Package
 
 in  upstream # additions # overrides
