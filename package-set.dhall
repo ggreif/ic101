@@ -10,11 +10,11 @@ let base = [
    { name = "matchers"
    , repo = "git@github.com:kritzcreek/motoko-matchers.git"
    , version = "v0.1.3"
-   , dependencies = ["base"] : List Text
+   , dependencies = ["base"]
    },
    { name = "base"
    , repo = "file:///Users/ggreif/motoko-base"
-   , version = "2219026e94142359161f64fd80d38ef71a84ef06"
+   , version = "43fe5fa8909971f7106498ea9bcdc8fdfa4d1e23"
    , dependencies = [] : List Text
    }
 ]
