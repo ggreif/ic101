@@ -29,6 +29,14 @@ actor {
           ignore await Canister.greet("Joachim");
         });
 */
+        let {attempt; equals; inRange} = M;
+
+        // Will succeed
+        it.should("see a byte outcome", func () : async C.TestResult {
+          let b = await Random.byte();
+          attempt(Prim.nat8ToNat b, inRange<Nat>(0, 255))
+        });
+
         // Will succeed
         it.should("see a single outcome", func () : async C.TestResult {
           let u = await Random.range(0);
@@ -38,24 +46,18 @@ actor {
         // Will succeed
         it.should("see four outcomes", func () : async C.TestResult {
           let u = await Random.range(2);
-          let {attempt; anyOf; equals; inRange} = M;
-          //attempt(u, anyOf(A.map([0, 1, 2, 3], F.compose(equals, T.nat))))
-          //attempt(u, anyOf(A.map([T.nat 0, T.nat 1, T.nat 2, T.nat 3], equals<Nat>)));
-          //attempt(u, anyOf([equals(T.nat 0), equals(T.nat 1), equals(T.nat 2), equals(T.nat 3)]))
           attempt(u, inRange<Nat>(0, 3))
         });
 
         // Will succeed
         it.should("see binomial outcomes of 200 flips", func () : async C.TestResult {
           let u = await Random.binomialNat8(200);
-          let {attempt; anyOf; equals; inRange} = M;
           attempt(Prim.nat8ToNat u, inRange<Nat>(0, 200))
         });
 
         // Will fail very seldom
         it.should("see binomial outcomes [3 .. 17] of 20 flips", func () : async C.TestResult {
           let u = await Random.binomialNat8(20);
-          let {attempt; anyOf; equals; inRange} = M;
           attempt(Prim.nat8ToNat u, inRange<Nat>(3, 17))
         });
 
