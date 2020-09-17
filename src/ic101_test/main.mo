@@ -1,4 +1,5 @@
 import Canister "canister:ic101";
+import Die "canister:die";
 import C "mo:matchers/Canister";
 import M "mo:matchers/Matchers";
 import T "mo:matchers/Testable";
@@ -65,6 +66,21 @@ actor {
         it.should("see a head coin flip", func () : async C.TestResult {
           let flip = await Random.coin();
           M.attempt(flip, M.equals(T.bool true))
+        });
+
+        let block = await Random.blob();
+        let fin = Random.Finite block;
+
+        // Will succeed
+        it.should("see binomial outcomes of 255 flips", func () : async C.TestResult {
+          let ?u = fin.binomial(255);
+          attempt(Prim.nat8ToNat u, inRange<Nat>(0, 255))
+        });
+
+        // Will succeed
+        it.should("see a properly rolled die", func () : async C.TestResult {
+          let r = await Die.roll();
+          attempt(r, inRange<Nat>(1, 6))
         });
 
         await it.runAll()

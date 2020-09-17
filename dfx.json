@@ -4,6 +4,10 @@
       "main": "src/ic101/main.mo",
       "type": "motoko"
     },
+    "die": {
+      "main": "src/ic101/die.mo",
+      "type": "motoko"
+    },
     "ic101_test": {
       "dependencies": [
         "ic101"
