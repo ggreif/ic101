@@ -51,13 +51,13 @@ actor {
 
         // Will succeed
         it.should("see binomial outcomes of 200 flips", func () : async C.TestResult {
-          let u = await Random.binomialNat8(200);
+          let u = await Random.binomial(200);
           attempt(Prim.nat8ToNat u, inRange<Nat>(0, 200))
         });
 
         // Will fail very seldom
         it.should("see binomial outcomes [3 .. 17] of 20 flips", func () : async C.TestResult {
-          let u = await Random.binomialNat8(20);
+          let u = await Random.binomial(20);
           attempt(Prim.nat8ToNat u, inRange<Nat>(3, 17))
         });
 
