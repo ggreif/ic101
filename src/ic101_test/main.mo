@@ -31,7 +31,7 @@ actor {
         });
 */
         let {attempt; equals; inRange} = M;
-
+/*
         // Will succeed
         it.should("see a byte outcome", func () : async C.TestResult {
           let b = await Random.byte();
@@ -67,7 +67,7 @@ actor {
           let flip = await Random.coin();
           M.attempt(flip, M.equals(T.bool true))
         });
-
+*/
         let block = await Random.blob();
         let fin = Random.Finite block;
 
