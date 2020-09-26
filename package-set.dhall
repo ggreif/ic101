@@ -9,7 +9,7 @@ let additions = [] : List Package
 let overrides = [
    { name = "base"
    , repo = "https://github.com/dfinity/motoko-base.git"
-   , version = "f3fb7cb703be46589ad0fe2eefddbf72e2ce6386"
+   , version = "d0b0aa8aa9e5c7c5044c5cb866990af29db8f6ca"
    , dependencies = [] : List Text
    }
 ]
