@@ -24,12 +24,12 @@ actor {
           let greeting = await Canister.greet("Claudio");
           M.attempt(greeting, M.equals(T.text("Hello, Karl!")))
         });
-
+*/
         // Will fail
         it.shouldFailTo("greet Joachim", func () : async () {
           ignore await Canister.greet("Joachim");
         });
-*/
+
         let {attempt; equals; inRange} = M;
 /*
         // Will succeed
@@ -69,7 +69,7 @@ actor {
         });
 */
         let block = await Random.blob();
-        //let crc = Prim.hashBlob(block); // adding this line makes the trap go away
+        let crc = Prim.hashBlob(block); // adding this line makes the trap go away
         let fin = Random.Finite block;
 
         // Will succeed
