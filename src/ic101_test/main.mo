@@ -69,6 +69,7 @@ actor {
         });
 */
         let block = await Random.blob();
+        //let crc = Prim.hashBlob(block); // adding this line makes the trap go away
         let fin = Random.Finite block;
 
         // Will succeed
