@@ -71,7 +71,34 @@ actor {
         let block = await Random.blob();
         let crc = Prim.hashBlob(block); // adding this line makes the trap go away
         let fin = Random.Finite block;
+        //let ?c = fin.coin();
+        //let ?c1 = fin.coin();
+        var corr = false;
+        if true {
+          // Will fail sometimes
+          it.should("see a head coin flip", func () : async C.TestResult {
+            let flip = Random.coinFrom(block);
+            corr := flip;
+            M.attempt(flip, M.equals(T.bool true))
+          });
+        };
 
+        if true {
+          // Will succeed
+          it.should("see a head coin flip", func () : async C.TestResult {
+            let flip = Random.coinFrom(block);
+            attempt(flip, M.equals(T.bool corr))
+          });
+        };
+
+        if true { // TOGGLE ME! #####################
+          // Will succeed
+          it.should("see a head coin flip", func () : async C.TestResult {
+            let ?c = if false fin.coin() else ?corr;
+            attempt(c, M.equals(T.bool corr))
+          });
+        };
+/*
         // Will succeed
         it.should("see binomial outcomes of 255 flips", func () : async C.TestResult {
           let ?u = fin.binomial(255);
@@ -83,7 +110,7 @@ actor {
           let r = await Die.roll();
           attempt(r, inRange<Nat>(1, 6))
         });
-
+*/
         await it.runAll()
     }
 }
