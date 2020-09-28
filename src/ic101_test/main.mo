@@ -69,10 +69,7 @@ actor {
         });
 */
         let block = await Random.blob();
-        let crc = Prim.hashBlob(block); // adding this line makes the trap go away
         let fin = Random.Finite block;
-        //let ?c = fin.coin();
-        //let ?c1 = fin.coin();
         var corr = false;
         if true {
           // Will fail sometimes
@@ -92,10 +89,11 @@ actor {
         };
 
         if true { // TOGGLE ME! #####################
-          // Will succeed
+          // Will fail sometimes
           it.should("see a head coin flip", func () : async C.TestResult {
-            let ?c = if false fin.coin() else ?corr;
-            attempt(c, M.equals(T.bool corr))
+            // let fin = Random.Finite block; // uncomment, and the crash goes away (because this local is not retained in GC?)
+            let ?n = fin.range(1);
+            attempt(n, M.equals(T.nat n))
           });
         };
 /*
