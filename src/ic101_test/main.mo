@@ -70,8 +70,9 @@ actor {
 */
         let block = await Random.blob();
         let fin = Random.Finite block;
+        /*
         var corr = false;
-        if true {
+        if false {
           // Will fail sometimes
           it.should("see a head coin flip", func () : async C.TestResult {
             let flip = Random.coinFrom(block);
@@ -80,20 +81,19 @@ actor {
           });
         };
 
-        if true {
+        if false {
           // Will succeed
           it.should("see a head coin flip", func () : async C.TestResult {
             let flip = Random.coinFrom(block);
             attempt(flip, M.equals(T.bool corr))
           });
         };
-
+        */
         if true { // TOGGLE ME! #####################
           // Will fail sometimes
-          it.should("see a head coin flip", func () : async C.TestResult {
-            // let fin = Random.Finite block; // uncomment, and the crash goes away (because this local is not retained in GC?)
-            let ?n = fin.range(1);
-            attempt(n, M.equals(T.nat n))
+          it.should("see a head coin flip", func CRASHER () : async C.TestResult {
+            // let f : Random.Finite = fin; // uncomment, and the crash appears (because `fin` is closed over, thus retained in GC?)
+            attempt(1, M.equals(T.nat 1))
           });
         };
 /*
